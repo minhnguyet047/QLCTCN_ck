@@ -27,8 +27,6 @@ fun MainScreen(
     onLogout: () -> Unit
 ) {
     val navController = rememberNavController()
-
-    // ✅ KHỞI TẠO CÁC VIEWMODEL 1 LẦN DUY NHẤT (SHARED INSTANCE)
     val budgetViewModel: BudgetViewModel = viewModel(factory = ViewModelFactory())
     val categoryViewModel: CategoryViewModel = viewModel(factory = ViewModelFactory())
     // TransactionViewModel cần userViewModel để cập nhật số dư
@@ -51,7 +49,7 @@ fun MainScreen(
                 TransactionListScreen(
                     navController = navController,
                     onAddClick = { navController.navigate(Screen.AddTransaction.route) },
-                    transactionViewModel = transactionViewModel // ✅ Truyền instance đã tạo
+                    transactionViewModel = transactionViewModel 
                 )
             }
             composable(Screen.Categories.route) {
@@ -68,8 +66,8 @@ fun MainScreen(
             composable(Screen.AddTransaction.route) {
                 AddTransactionScreen(
                     onDone = { navController.popBackStack() },
-                    categoryViewModel = categoryViewModel,       // ✅ Truyền instance
-                    transactionViewModel = transactionViewModel  // ✅ Truyền instance
+                    categoryViewModel = categoryViewModel,       
+                    transactionViewModel = transactionViewModel 
                 )
             }
 
