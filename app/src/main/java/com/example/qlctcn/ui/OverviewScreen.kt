@@ -39,7 +39,6 @@ fun OverviewScreen(
 
     val transactions = transactionViewModel.transactions
 
-    // ✅ SỬA ĐỔI: Balance lấy trực tiếp từ UserViewModel
     val balance = userViewModel.user.value?.balance ?: 0L
 
     // Thu chi lấy từ TransactionViewModel (đã tối ưu)
