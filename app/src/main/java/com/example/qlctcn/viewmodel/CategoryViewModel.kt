@@ -18,11 +18,9 @@ class CategoryViewModel(
     private val _categories = mutableStateListOf<Category>()
     val categories: List<Category> get() = _categories
 
-    // Biến để quản lý job load, giúp hủy job cũ nếu gọi liên tục (tránh race condition)
     private var loadJob: Job? = null
 
     fun loadCategories(type: TransactionType) {
-        // Hủy job cũ đang chạy dở (nếu có) để tránh 2 job cùng đổ dữ liệu vào list
         loadJob?.cancel()
         loadJob = viewModelScope.launch {
             _categories.clear()
@@ -42,15 +40,14 @@ class CategoryViewModel(
             userId = userId
         )
 
-        // 2. CẬP NHẬT UI NGAY LẬP TỨC (Optimistic)
+       
         _categories.add(newCategory)
 
         viewModelScope.launch {
-            // 3. GỬI LÊN SERVER (Background)
+           
             categoryRepository.create(newCategory)
 
-            // ✅ QUAN TRỌNG: KHÔNG GỌI loadCategories(type) Ở ĐÂY NỮA
-            // Vì ta đã thêm thủ công ở bước 2 rồi. Gọi lại sẽ gây trùng lặp.
+            
         }
     }
 
