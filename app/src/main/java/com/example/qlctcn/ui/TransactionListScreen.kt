@@ -38,7 +38,7 @@ private enum class FilterType { ALL, MONTH, YEAR }
 fun TransactionListScreen(
     navController: NavController,
     onAddClick: () -> Unit,
-    // ✅ Nhận Shared ViewModel
+
     transactionViewModel: TransactionViewModel
 ) {
     // ===== LOAD DATA =====
