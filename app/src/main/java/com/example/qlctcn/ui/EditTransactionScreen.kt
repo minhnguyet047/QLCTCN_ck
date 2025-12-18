@@ -30,7 +30,7 @@ private val ColorHeader = Color(0xFF76B7FF)
 fun EditTransactionScreen(
     transactionId: String,
     onDone: () -> Unit,
-    // ✅ Sử dụng ViewModel được truyền từ MainScreen
+
     categoryViewModel: CategoryViewModel,
     transactionViewModel: TransactionViewModel
 ) {
