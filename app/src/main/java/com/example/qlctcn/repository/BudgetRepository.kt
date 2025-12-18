@@ -8,7 +8,6 @@ class BudgetRepository : FirestoreRepository() {
     suspend fun create(budget: Budget) {
         val uid = uidOrNull() ?: return
 
-        // ✅ SỬA: Dùng ID có sẵn
         val docRef = if (budget.id.isNotEmpty()) {
             firestore.collection("budgets").document(budget.id)
         } else {
