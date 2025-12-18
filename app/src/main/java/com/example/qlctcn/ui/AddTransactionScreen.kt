@@ -31,7 +31,7 @@ private val ColorHeader = Color(0xFF76B7FF)
 @Composable
 fun AddTransactionScreen(
     onDone: () -> Unit,
-    // ✅ Bỏ giá trị mặc định để ép buộc dùng ViewModel từ MainScreen
+  
     categoryViewModel: CategoryViewModel,
     transactionViewModel: TransactionViewModel
 ) {
@@ -63,7 +63,7 @@ fun AddTransactionScreen(
             .fillMaxSize()
             .background(ColorBg)
     ) {
-        // ... (Phần UI giữ nguyên không thay đổi) ...
+      
         // ===== HEADER =====
         Box(
             modifier = Modifier
