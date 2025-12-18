@@ -28,11 +28,6 @@ class BudgetViewModel(
     fun createOrUpdateBudget(categoryId: String, categoryName: String, month: String, limitAmount: Long) {
         viewModelScope.launch {
             val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return@launch
-
-            // Logic cũ: check xem đã tồn tại chưa để update hoặc tạo mới
-            // Chỗ này hơi phức tạp để Optimistic Update hoàn hảo nếu chưa biết nó tồn tại hay không.
-            // TUY NHIÊN, ta có thể check trong list `budgets` đang có trên RAM trước.
-
             val existingIndex = budgets.indexOfFirst { it.categoryId == categoryId && it.month == month }
 
             if (existingIndex != -1) {
@@ -55,16 +50,13 @@ class BudgetViewModel(
                     userId = userId
                 )
 
-                // ADD LOCAL
+               
                 budgets.add(newBudget)
 
-                // SEND SERVER
-                // Lưu ý: Repository cần check trùng lặp (nếu server có mà local chưa load kịp)
-                // Nhưng với logic đơn giản này, ta cứ gửi tạo mới.
                 budgetRepository.create(newBudget)
             }
 
-            // ✅ QUAN TRỌNG: KHÔNG GỌI loadBudgets(month)
+          
         }
     }
 
