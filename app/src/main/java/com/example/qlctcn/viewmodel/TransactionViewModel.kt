@@ -50,7 +50,7 @@ class TransactionViewModel(
     fun addTransaction(amount: Long, category: Category, type: TransactionType, note: String) {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
 
-        // ✅ SỬA: Tạo UUID ngẫu nhiên cho ID, tránh lỗi id rỗng
+     
         val newId = UUID.randomUUID().toString()
 
         val transaction = Transaction(
@@ -92,7 +92,7 @@ class TransactionViewModel(
         }
     }
 
-    // ... (Các hàm update/delete giữ nguyên logic cũ, chúng đã ổn)
+   
     fun updateTransaction(old: Transaction, updated: Transaction) {
         if (old.type == TransactionType.EXPENSE) { uiBalance += old.amount; uiExpense -= old.amount }
         else { uiBalance -= old.amount; uiIncome -= old.amount }
