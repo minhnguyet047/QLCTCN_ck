@@ -29,11 +29,9 @@ fun HomeScreen(
 ) {
     val user = userViewModel.user.value
 
-    // ✅ SỬA ĐỔI: Lấy số dư trực tiếp từ UserViewModel (Nguồn tin cậy nhất)
-    // TransactionViewModel.addTransaction sẽ update UserViewModel, và biến này sẽ tự động thay đổi ngay lập tức
     val displayBalance = user?.balance ?: 0L
 
-    // Tổng thu/chi lấy từ TransactionViewModel (đã được tối ưu tốc độ)
+   
     val totalIncome = transactionViewModel.uiIncome
     val totalExpense = transactionViewModel.uiExpense
 
@@ -70,7 +68,7 @@ fun HomeScreen(
                 Spacer(modifier = Modifier.width(12.dp))
                 Column {
                     Text("Số dư hiện tại")
-                    // ✅ Hiển thị số dư chuẩn từ User
+                  
                     Text(
                         text = "$displayBalance đ",
                         style = MaterialTheme.typography.h4
